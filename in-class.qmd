@@ -1,28 +1,185 @@
 ---
-title: "In Class Activity"
+title: "In Class Activity - Plotting"
 format: 
   html:
     code-tools: true
     toc: false
+execute:
+  echo: true
 ---
 
-## Examples
-
-
-This in-class file is used for demonstrating individual examples related to this topic and is kept as a persistent record of examples provided during lectures.
 
 ## The Data
 
+Let's start by playing around with some of the [Rice Rivers Center](https://ricerivers.vcu.edu) data we've been using all along.  While loading it all in, let's just add dates, months, & weekdays.
 
-## Vectors
+```{r}
+library( tidyverse )
+library( lubridate )
+url <- "https://docs.google.com/spreadsheets/d/1Mk1YGH9LqjF7drJE-td1G_JkdADOU0eMlrP01WFBT8s/pub?gid=0&single=true&output=csv"
+read_csv( url ) %>%
+  mutate( Date = mdy_hms(DateTime) ) %>%
+  mutate( Weekday = weekdays( Date ) ) %>%
+  mutate( Month = month(Date) ) %>%
+  select( Date, Month, Weekday, 
+          Depth = Depth_m, Temp = H2O_TempC ) -> rice_data
+```
 
-## Matrices
-
-## Lists
-
-## Data Frames
 
 
 
+## Classic Graphics
+
+
+
+*Univariate - Histograms*
+
+```{r}
+
+```
+
+
+*Density Plots*
+
+
+```{r}
+
+```
+
+
+
+
+
+### Bivariate
+
+
+*Scatter Plots*
+
+```{r}
+
+```
+
+*Customization*
+
+Parameter | Description
+----------|-----------------------------------------------------------------------------------------------------------
+`type`    | The kind of plot to show ('p'oint, 'l'ine, 'b'oth, or 'o'ver).  A point plot is the default.
+`pch`     | The character (or symbol) being used to plot.  There 26 recognized general characters to use for plotting.  The default is `pch=1`. 
+`col`     | The color of the symbols/lines that are plot.
+`cex`     | The magnification size of the character being plot.  The default is `cex=1` and deviation from that will increase (cex > 1) or decrease (0 < cex < 1) the scaling of the symbols.  Also works for `cex.lab` and `cex.axis`.
+`lwd`     | The width of any lines in the plot.
+`lty`     | The type of line to be plot (solid, dashed, etc.)
+`bty`     | The 'Box' type around the plot ("o", "1", "7","c","u", "]", and my favorite "n")
+
+```{r}
+
+```
+
+
+![](media/symbology.png)
+
+
+```{r}
+
+```
+
+
+*Color spaces*
+
+Sources of color:
+
+- Hex ([coolors](https://coolors.co/))
+- Named (via `colors()`)  
+- [ColorBrewer](https://colorbrewer2.org/)
+
+
+
+```{r}
+library(RColorBrewer)
+display.brewer.all()
+```
+
+
+*Boxplots*
+
+```{r}
+
+```
+
+
+*Text Overlays*
+
+
+```{r}
+
+```
+
+
+
+
+## GGPlot Graphics
+
+
+
+### Univariate Data
+
+
+*Histograms*
+
+```{r}
+
+```
+
+
+*Barplots*
+
+```{r}
+
+```
+
+
+*Pie Charts*
+
+
+```{r}
+
+```
+
+
+### Bivariate Data
+
+*Scatter Plots*
+
+```{r}
+
+```
+
+
+*Radial Plots*
+
+```{r}
+
+```
+
+
+
+
+
+### Customizations
+
+
+*Themes*
+
+```{r}
+
+```
+
+
+*Color Spaces*
+
+
+```{r}
+
+```
 
 

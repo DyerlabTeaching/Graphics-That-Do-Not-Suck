@@ -20,6 +20,9 @@ This topic has the following content:
  - Slides for [classic plotting](https://dyerlabteaching.github.io/Graphics-That-Do-Not-Suck/slides_classic.html)
  - The narrative for [classic plotting](https://dyerlabteaching.github.io/Graphics-That-Do-Not-Suck/narrative_classic.html)
  - [In Class](https://dyerlabteaching.github.io/Graphics-That-Do-Not-Suck/in-class.html) documents.
+ - External resources:
+   - [Date to Viz](https://www.data-to-viz.com).
+   - [R Graph Gallery](https://r-graph-gallery.com/ggplot2-package.html)
 
 
 ## Contact Information

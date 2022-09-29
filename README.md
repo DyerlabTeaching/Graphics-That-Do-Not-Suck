@@ -1,22 +1,25 @@
-# Topic Title
+# Graphics that Don't Suck
 
 
 ## Impetus
 
-This is a description of the basic template file for a course component repository
+This is a slightly larger topic because it emcompasses both classic graphics in `R` as well as graphics via `ggplot2`.
 
 ## Student Learning Objectives
 
-At the end of this topic, you should be able to:  
- - *Learning Objective 1* 
- - *Learning Objective 2*
- - *Learning Objective 3* 
+At the end of this topic, you should be able to:   
+ - Create both univariate and bivariate plots of data using continuous and categorical data types.  
+ - Customize symbologies for data representation based upon properties intrinsic to the data.  
+ - Apply the use of colors to make data better represented.  
 
 ## Content
- - [Slides](slides.html)
- - [Narrative](narrative.html)
- - [In Class](in-class.html)
- - Data Set
+
+This topic has the following content:
+
+ - Slides for [classic plotting](https://dyerlabteaching.github.io/Graphics-That-Do-Not-Suck/slides_classic.html)
+ - The narrative for [classic plotting](https://dyerlabteaching.github.io/Graphics-That-Do-Not-Suck/slides_classic.html)
+ - [In Class](https://dyerlabteaching.github.io/Graphics-That-Do-Not-Suck/in-class.html) documents.
+
 
 ## Contact Information
 

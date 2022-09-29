@@ -1,5 +1,6 @@
 # Graphics that Don't Suck
 
+![](https://raw.githubusercontent.com/DyerlabTeaching/Graphics-That-Do-Not-Suck/main/media/graphics.png)
 
 ## Impetus
 

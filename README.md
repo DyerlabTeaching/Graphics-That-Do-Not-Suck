@@ -23,6 +23,19 @@ This topic has the following content:
  - External resources:
    - [Date to Viz](https://www.data-to-viz.com).
    - [R Graph Gallery](https://r-graph-gallery.com/ggplot2-package.html)
+   
+
+## Recorded Content
+
+Here is some recorded content from previous verions of this lecture.
+
+### Basic Graphics
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tDDzStY8WMU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+### GGPlot Graphics
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/12yz45V7mY8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 ## Contact Information

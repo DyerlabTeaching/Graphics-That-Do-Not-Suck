@@ -50,7 +50,9 @@ hist( rice_data$Temp,
 
 
 ```{r}
-
+d <- density( rice_data$Temp , na.rm=TRUE )
+d
+plot(d)
 ```
 
 
@@ -63,7 +65,11 @@ hist( rice_data$Temp,
 *Scatter Plots*
 
 ```{r}
+plot( rice_data$Depth[1:10], rice_data$Temp[1:10], type="l", pch=3, lwd= 3, lty=3, bty="l",
+      xlim = c(4.75, 4.95)) 
 
+plot( rice_data$Depth[1:10], rice_data$Temp[1:10], type="p", pch=16, bty="l",
+      xlim = c(4.75, 4.95) ) 
 ```
 
 *Customization*
@@ -110,15 +116,22 @@ display.brewer.all()
 *Boxplots*
 
 ```{r}
-
+boxplot( Temp ~ Month, data=rice_data, notch=TRUE)
 ```
+
+```{r}
+boxplot( rice_data$Month, rice_data$Temp )
+```
+
+
 
 
 *Text Overlays*
 
 
 ```{r}
-
+plot( rice_data$Temp, rice_data$Depth)
+text( 4,3.9, "hello world")
 ```
 
 
@@ -134,22 +147,38 @@ display.brewer.all()
 *Histograms*
 
 ```{r}
-
+rice_data %>%
+  ggplot( aes( x=Temp) ) +
+  geom_histogram( bins = 100 )
 ```
 
 
 *Barplots*
 
 ```{r}
-
+rice_data %>%
+  ggplot( aes( Month, Temp) ) + 
+  geom_col()
 ```
+
+```{r}
+rice_data %>%
+  mutate( Month = factor( Month, ordered=TRUE) ) %>%
+  ggplot( aes( x=Month, y=Temp ) ) + 
+  geom_boxplot( notch = TRUE )
+```
+
+
 
 
 *Pie Charts*
 
 
 ```{r}
-
+rice_data %>%
+  ggplot( aes( Month, Temp ) ) + 
+  geom_bar() + 
+  geom_
 ```
 
 

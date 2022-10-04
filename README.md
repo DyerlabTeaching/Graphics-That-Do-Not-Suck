@@ -17,12 +17,13 @@ At the end of this topic, you should be able to:
 
 This topic has the following content:
 
- - Slides for [classic plotting](https://dyerlabteaching.github.io/Graphics-That-Do-Not-Suck/slides_classic.html)
- - The narrative for [classic plotting](https://dyerlabteaching.github.io/Graphics-That-Do-Not-Suck/narrative_classic.html)
+ - Slides for [classic plotting](https://dyerlabteaching.github.io/Graphics-That-Do-Not-Suck/slides_classic.html) and for [ggplot2](https://dyerlabteaching.github.io/Graphics-That-Do-Not-Suck/slides.html) plotting.
+ - The narrative for both [classic plotting](https://dyerlabteaching.github.io/Graphics-That-Do-Not-Suck/narrative_classic.html) as well as for [ggplot2](https://dyerlabteaching.github.io/Graphics-That-Do-Not-Suck/narrative.html) graphics
  - [In Class](https://dyerlabteaching.github.io/Graphics-That-Do-Not-Suck/in-class.html) documents.
  - External resources:
    - [Date to Viz](https://www.data-to-viz.com).
    - [R Graph Gallery](https://r-graph-gallery.com/ggplot2-package.html)
+   - [GGPlot2 Cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf)
    
 
 ## Recorded Content

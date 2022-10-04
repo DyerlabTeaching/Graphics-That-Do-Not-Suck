@@ -4,7 +4,7 @@
 
 ## Impetus
 
-This is a slightly larger topic because it emcompasses both classic graphics in `R` as well as graphics via `ggplot2`.
+This is a slightly larger topic because it encompasses both classic graphics in `R` as well as graphics via `ggplot2`.
 
 ## Student Learning Objectives
 
@@ -28,7 +28,7 @@ This topic has the following content:
 
 ## Recorded Content
 
-Here is some recorded content from previous verions of this lecture.
+Here is some recorded content from previous versions of this lecture.
 
 ### Basic Graphics
 

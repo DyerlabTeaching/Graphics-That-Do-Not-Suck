@@ -175,10 +175,7 @@ rice_data %>%
 
 
 ```{r}
-rice_data %>%
-  ggplot( aes( Month, Temp ) ) + 
-  geom_bar() + 
-  geom_
+
 ```
 
 

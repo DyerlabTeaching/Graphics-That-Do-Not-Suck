@@ -10,7 +10,6 @@ execute:
 ## Basic Plot Types
 
 
-
 We also looked at both width and length, as seen in @fig-scatterplot. blah blah blah.
 
 ```{r}

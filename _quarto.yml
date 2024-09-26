@@ -1,5 +1,5 @@
 project:
-  title: "Dyerlab-Template"
+  title: "Graphics That Don't Suck"
   output-dir: docs
 
 format:
@@ -20,7 +20,6 @@ format:
     footer: "[Dyerlab](https://dyerlab.org)"
     background-transition: fade
     theme: default
-    logo: "media/ces_logo.png"
     editor: source
     title-slide-attributes: 
       data-background-image: "media/contour.png"

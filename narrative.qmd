@@ -13,12 +13,14 @@ Consider the graph below whose data are from a 2011 article in *The Economist* m
 
 ```{r}
 #| echo: false
+#| warning: false 
+#| error: false
 #| label: fig-economist
 #| fig-cap: Corruption and Human Develoment among OECD countries from <i>The Economist</i> magazine.
 library( ggplot2 )
 library( ggrepel )
 library( readr )
-data <- read.csv("data/EconomistData.csv")
+data <- read_csv("data/EconomistData.csv", , col_types = cols() )
 Region <- as.character( data$Region )
 Region[ Region == "SSA"] <- "Sub-Saharan Africa"
 Region[ Region == "Asia Pacific"] <- "Asia & Oceania"

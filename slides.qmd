@@ -260,7 +260,7 @@ ggplot() +
 
 
 
-# Themes {background-color="white" background-image="https://live.staticflickr.com/65535/50294412713_25bbd52230_c_d.jpg" background-size="auto" background-position="center"}
+# Themes {background-color="white" background-image="https://live.staticflickr.com/65535/50294412713_25bbd52230_c_d.jpg" background-size="auto" background-position="right"}
 
 
 # <font color="white">Customizable!!!</font> {background-color="white" background-image="https://media.giphy.com/media/dWEk3w1Uo97qw/giphy.gif" background-size="cover" background-position="center"}
@@ -531,13 +531,11 @@ p + geom_text( aes(x=7.25, y=4.25, label=cor.text) )
 
 
 ```{r}
-sLength <- by( iris$Sepal.Length, iris$Species, mean )
-sWidth <- by( iris$Sepal.Width, iris$Species, mean )
-
-df <- data.frame( Sepal.Length = as.numeric( sLength ),
-                  Sepal.Width = as.numeric( sWidth ),
-                  Species = levels( iris$Species ) )
-df
+iris |> 
+  group_by( Species ) |> 
+  summarize( Sepal.Length = mean(Sepal.Length), 
+             Sepal.Width = mean(Sepal.Width)) -> iris_Centroids
+iris_Centroids
 ```
 
 ## Labels
@@ -545,7 +543,7 @@ df
 ```{r}
 ggplot( iris, aes(Sepal.Length, Sepal.Width) ) + 
   geom_point( aes(color=Species) ) + 
-  geom_text( aes(label=Species), data=df) 
+  geom_text( aes(label=Species), data=iris_Centroids) 
 ```
 
 
@@ -566,7 +564,7 @@ library( ggrepel )
 ```{r}
 ggplot( iris, aes(Sepal.Length, Sepal.Width) ) + 
   geom_point( aes(color=Species) ) + 
-  geom_label_repel( aes(label=Species), data=df )
+  geom_label_repel( aes(label=Species), data=iris_Centroids )
 ```
 
 ## Remove Legend
@@ -574,8 +572,9 @@ ggplot( iris, aes(Sepal.Length, Sepal.Width) ) +
 ```{r}
 ggplot( iris, aes(Sepal.Length, Sepal.Width) ) + 
   geom_point( aes(color=Species) ) + 
-  geom_label_repel( aes(label=Species), data=df ) + 
-  guides( color = FALSE )
+  geom_label_repel( aes(label=Species), data=iris_Centroids ) + 
+  guides( color = FALSE ) + 
+  theme_minimal()
 ```
 
 
@@ -591,7 +590,7 @@ ggplot( iris, aes(Sepal.Length, Sepal.Width) ) +
 ## Questions
 
 ::: {layout-ncol="2"}
-If you have any questions, please feel free to either post them as an "Issue" on your copy of this GitHub Repository, post to the [Canvas](https://canvas.vcu.edu) discussion board for the class, or drop me an [email](mailto://rjdyer@vcu.edu).
+If you have any questions, please feel free to post to the [Canvas](https://canvas.vcu.edu) discussion board for the class, or drop me an [email](mailto://rjdyer@vcu.edu).
 
 ![](media/peter_sellers.gif){.middle fig-alt="Peter Sellers looking bored" fig-align="center" width="500"}
 :::

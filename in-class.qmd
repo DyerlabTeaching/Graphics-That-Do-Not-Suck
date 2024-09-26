@@ -11,18 +11,12 @@ execute:
 
 ## The Data
 
-Let's start by playing around with some of the [Rice Rivers Center](https://ricerivers.vcu.edu) data we've been using all along.  While loading it all in, let's just add dates, months, & weekdays.
+Let's start by playing around with some of the [Rice Rivers Center](https://ricerivers.vcu.edu) data from the script you wrote in a previous exercise (I am assuming it is in your current course repository directory).
 
 ```{r}
-library( tidyverse )
-library( lubridate )
-url <- "https://docs.google.com/spreadsheets/d/1Mk1YGH9LqjF7drJE-td1G_JkdADOU0eMlrP01WFBT8s/pub?gid=0&single=true&output=csv"
-read_csv( url ) %>%
-  mutate( Date = mdy_hms(DateTime) ) %>%
-  mutate( Weekday = weekdays( Date ) ) %>%
-  mutate( Month = month(Date) ) %>%
-  select( Date, Month, Weekday, 
-          Depth = Depth_m, Temp = H2O_TempC ) -> rice_data
+source("get_rice_data.R")
+rice_data <- get_rice_data()
+summary( rice_data )
 ```
 
 
@@ -35,7 +29,7 @@ read_csv( url ) %>%
 *Univariate - Histograms*
 
 ```{r}
-hist( rice_data$Temp, 
+hist( rice_data$Air_Temperature, 
       xlab = "Temparture (°C)",
       main = "",
       col = "aquamarine4", 
@@ -50,7 +44,7 @@ hist( rice_data$Temp,
 
 
 ```{r}
-d <- density( rice_data$Temp , na.rm=TRUE )
+d <- density( rice_data$Air_Temperature , na.rm=TRUE )
 d
 plot(d)
 ```
@@ -65,10 +59,10 @@ plot(d)
 *Scatter Plots*
 
 ```{r}
-plot( rice_data$Depth[1:10], rice_data$Temp[1:10], type="l", pch=3, lwd= 3, lty=3, bty="l",
+plot( rice_data$Water_Depth[1:10], rice_data$Air_Temperature[1:10], type="l", pch=3, lwd= 3, lty=3, bty="l",
       xlim = c(4.75, 4.95)) 
 
-plot( rice_data$Depth[1:10], rice_data$Temp[1:10], type="p", pch=16, bty="l",
+plot( rice_data$Water_Temperature[1:10], rice_data$Air_Temperature[1:10], type="p", pch=16, bty="l",
       xlim = c(4.75, 4.95) ) 
 ```
 
@@ -116,13 +110,8 @@ display.brewer.all()
 *Boxplots*
 
 ```{r}
-boxplot( Temp ~ Month, data=rice_data, notch=TRUE)
+boxplot( Air_Temperature ~ Month, data=rice_data, notch=TRUE)
 ```
-
-```{r}
-boxplot( rice_data$Month, rice_data$Temp )
-```
-
 
 
 
@@ -130,8 +119,27 @@ boxplot( rice_data$Month, rice_data$Temp )
 
 
 ```{r}
-plot( rice_data$Temp, rice_data$Depth)
-text( 4,3.9, "hello world")
+rice_data |>
+  head(49) |>
+  tail( 49-13 ) |>
+  head( 26 ) |> 
+  droplevels() |>
+  select( Air_Temperature, Water_Depth, Date ) -> df
+
+plot( df$Air_Temperature ~ df$Water_Depth,
+      type="b", 
+      pch=16, 
+      col = hcl.colors(nrow(df)),
+      xlab="Water Depth (m)",
+      ylab="Air Temperature (°C)",
+      bty="n",
+      xlim=c(4.2,5.4))
+text( 4.48,-2.20, 
+      min(df$Date ),
+      cex=0.65)
+text( 5.17, -1.05,
+      max(df$Date),
+      cex=0.65)
 ```
 
 
@@ -148,7 +156,7 @@ text( 4,3.9, "hello world")
 
 ```{r}
 rice_data %>%
-  ggplot( aes( x=Temp) ) +
+  ggplot( aes( x=Air_Temperature) ) +
   geom_histogram( bins = 100 )
 ```
 
@@ -156,16 +164,18 @@ rice_data %>%
 *Barplots*
 
 ```{r}
-rice_data %>%
-  ggplot( aes( Month, Temp) ) + 
+rice_data |>
+  group_by( Month ) |>
+  summarize( Temperature = mean( Air_Temperature)) |>
+  ggplot( aes( Month, Temperature) ) + 
   geom_col()
 ```
 
 ```{r}
 rice_data %>%
-  mutate( Month = factor( Month, ordered=TRUE) ) %>%
-  ggplot( aes( x=Month, y=Temp ) ) + 
-  geom_boxplot( notch = TRUE )
+  ggplot( aes( x=Month, y=Air_Temperature ) ) + 
+  geom_boxplot( notch = TRUE ) + 
+  theme_minimal()
 ```
 
 

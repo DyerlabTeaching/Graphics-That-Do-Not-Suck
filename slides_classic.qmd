@@ -90,6 +90,7 @@ hist( sepal_length )
 
 ## Arguments to Customize Plots {.smaller}
 
+::: {.incremental}
 - `xlab` & `ylab`: The names attached to both x- and y-axes.  
 
 
@@ -105,7 +106,7 @@ hist( sepal_length )
 
 
 - `probability`: A flag as either `TRUE` or `FALSE` (the default) to have the y-axis scaled by total likelihood of each bins rather than a count of the numbrer of elements in that range.  
-
+:::
 
 
 
@@ -260,7 +261,7 @@ summary( iris )
 ```
 
 
-## Symbology
+## Symbology {.smaller}
 
 
 ```{r}
@@ -361,17 +362,9 @@ legend(6.5,4.3, pch=20, cex=1.5, col=raw_colors,legend=levels(iris$Species) )
 
 Google up something like "Color Theme Generator" and see what you find.
 
-One I use is: [coolors](https://coolors.co)
+- One I use [coolors](https://coolors.co) to explore various themes.  
 
-
-
-
-
-
-## Color Brewer  
-
-
-[Color Brewer](https://colorbrewer2.org)
+- There is a built-in plugin for [Color Brewer](https://colorbrewer2.org) that makes it easy to integrate (we will use this in `ggplot` graphics).  
 
 
 ## Color Brewer in R {.smaller}
@@ -391,6 +384,31 @@ display.brewer.all()
 ```
 
 
+
+## Wes Anderson Palettes {.smaller}
+
+This is a fun package that takes the colorspaces from Wes Anderson films for plotting.
+
+&nbsp;
+
+:::: {.columns}
+::: {.column width="50%"}
+![](media/zissou.png)
+:::
+
+::: {.column width="50%"}
+```{r}
+library( wesanderson )
+names( wes_palettes )
+```
+:::
+::::
+
+&nbsp;
+
+```{r}
+wes_palettes$Zissou1
+```
 
 
 
@@ -439,10 +457,11 @@ barplot( meanSepalLength,
 
 
 
-## The Boxplot - High Density Information {.smaller .scrollable}
+## Boxplot - Information Dense {.smaller .scrollable}
 
 A boxplot contains a high amount of information content and is appropriate when the groupings on the x-axis are categorical.  For each category, the graphical representation includes:  
 
+::: {.incremental}
 - The median value for the raw data
 
 - A box indicating the area between the first and third quartile (e.g,. the values enclosing the 25% - 75% of the data).  The top and bottoms are often referred to as the *hinges* of the box.
@@ -453,6 +472,7 @@ A boxplot contains a high amount of information content and is appropriate when 
 
 - Any points of the data that extend beyond the whiskers are plot as points.
 
+:::
 
 ## &nbsp;
 
@@ -503,7 +523,7 @@ text( 6.5, 4.2, cor.text, cex=1.2 )
 ## Questions
 
 ::: {layout-ncol="2"}
-If you have any questions, please feel free to either post them as an "Issue" on your copy of this GitHub Repository, post to the [Canvas](https://canvas.vcu.edu) discussion board for the class, or drop me an [email](mailto://rjdyer@vcu.edu).
+If you have any questions, please feel free to post to the [Canvas](https://canvas.vcu.edu) discussion board for the class, or drop me an [email](mailto://rjdyer@vcu.edu).
 
 ![](media/peter_sellers.gif){.middle fig-alt="Peter Sellers looking bored" fig-align="center" width="500"}
 :::

@@ -1,5 +1,5 @@
 ---
-title: "Topic Homework"
+title: "Graphics Homework"
 author: "YOUR NAME HERE"
 format: 
   html:
@@ -7,23 +7,18 @@ format:
     code-tools: true 
 ---
 
-## Homework
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+## The Data
 
-## Running Code
+Let's start by playing around with some of the [Rice Rivers Center](https://ricerivers.vcu.edu) data from the script *you wrote* in a previous exercise (I am assuming it is in your current course repository directory).
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+In the following examples, I will ask for graphical output from a pair of data sources.  Use *both* classic and ggplot approaches to construct plots.  You can decide on how to display the data, choose a visualization style that is most informative for each graphic.
 
-```{r}
-1 + 1
-```
+1. Total Rain for Each Weekday in January.  
+2. Average daily temperature for weekdays in February.
+3. Water depth on valentines day.
+4. Scatter plot of Daily Total Rain and Daily Median Temperature grouped by month (label the centroid of months).
+5. Wind Direction during the week containing the 8th of January.
 
-You can add options to executable code like this
 
-```{r}
-#| echo: false
-2 * 2
-```
 
-The `echo: false` option disables the printing of code (only output is displayed).

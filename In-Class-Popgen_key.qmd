@@ -1,0 +1,276 @@
+---
+title: "Graphics Walkthrough for FRSC"
+author: "Your Name Here"
+editor: source
+---
+
+![](https://live.staticflickr.com/65535/54338865257_77f16dcf28_c_d.jpg)
+
+# The Data
+
+Here i am going to use some example data that we have from the [Rice Rivers Center]() that has been collected from a series of instruments on site.  These include both atmospheric and aquatic data types. 
+
+I have put this into a function in the next chunck of code.  You should be able to look at the code and follow the logic.  The data are read in from a google sheet, textual representation of date and time for each record are turned into actual date object that spin off Day, Weekday, & Month objects.  I also convert a bunch of the data types into standard measurements and keep a subset of the measurements.
+
+```{r}
+#| warning: false 
+#| message: false
+
+library( tidyverse )
+library( lubridate )
+
+get_rice_data <- function() { 
+
+  url <- "https://docs.google.com/spreadsheets/d/1Mk1YGH9LqjF7drJE-td1G_JkdADOU0eMlrP01WFBT8s/pub?gid=0&single=true&output=csv"
+  
+  read_csv( url, col_types = cols() ) |>                                   # The col_types argument suppresses output. 
+    mutate( Date = mdy_hms(DateTime) ) |>
+    mutate( Day = day( Date ) ) |>                                         # Have day of the week
+    mutate( Weekday = wday( Date,
+                            label = TRUE,
+                            abbr = FALSE,
+                            week_start = 6) ) |>                            # Make weekdays as factor labels
+    mutate( Month = droplevels( month( Date, 
+                                       label = TRUE, 
+                                       abbr = FALSE)) )  |>                # Make months as existing factor labels
+    mutate( Air_Temperature = (AirTempF-32) * 5/9, 
+            Wind_Speed = WindSpeed_mph * 1.6,
+            Rain = Rain_in * 25.4 ) |>                                     # Make everything in SI
+    select( -SurfaceWaterElev_m_levelNad83m, -Depth_ft, -PH_mv,
+            -AirTempF, -WindSpeed_mph, -Rain_in,
+            -SpCond_mScm, -BGAPC_CML, -BGAPC_rfu, -ODO_mgl,
+            -DateTime, -RecordID) |>   # Dropping columns
+    rename( Water_Depth = Depth_m,
+            Chlorophyl = Chla_ugl,
+            Barametric_Pressure = BP_HG,
+            Water_Temperature = H2O_TempC,
+            Salinity = Salinity_ppt,
+            pH = PH, ODO = ODO_sat,
+            Turbidity = Turbidity_ntu) |>                                  # Renaming Existing Columns & reorder
+    select( Date, Month, Day, Weekday, 
+            Air_Temperature, Rain, Wind_Speed, Wind_Direction = WindDir, 
+            Humidity=RelHumidity, Barametric_Pressure, PAR,
+            Water_Temperature, Water_Depth, everything()) -> rice_data
+  
+  return( rice_data )                                                      # Return the data
+}
+
+```
+
+Let's look at the data.
+
+```{r}
+# use the function to make a data frame named 'data' then print the summary
+get_rice_data() -> data 
+
+data |> 
+  summary()
+```
+
+Let's now filter the data for just the first five days of records that were collected in `February` and name the data.frame `df`.
+
+```{r}
+# filter 
+data |> 
+  filter( Month == "February" ) |>
+  head( 4*24*5 ) -> df 
+```
+
+
+# Distribution
+
+The histogram is the most basic type of data display.  Create a historgram of `Air_Temperature`.
+
+```{r}
+df |>
+  ggplot( aes( Air_Temperature ) ) + 
+  geom_histogram()
+```
+
+Change the axis label to read "Air Temperature (°C)" and the y-axis as "Frequency."
+
+```{r}
+df |>
+  ggplot( aes( Air_Temperature ) ) + 
+  geom_histogram() + 
+  xlab("Air Temperture (°C)") +
+  ylab("F")
+```
+
+Let's change some colors.  
+- The `color` option in the `geom_histogram()` function references the lines around the bar.   
+- The `fill` option references the color of the bar.  
+
+Add these to the `geom_histogram()` with the colors of your choosing.
+
+```{r}
+df |>
+  ggplot( aes( Air_Temperature ) ) + 
+  geom_histogram( color="red", fill="orange") + 
+  xlab("Air Temperture (°C)") +
+  ylab("F")
+```
+
+
+### "You Are My Density"
+
+A `density` plot is the next level as it estimates the continuous distribution of values. 
+
+```{r}
+df |>
+  ggplot( aes( Air_Temperature ) ) + 
+  geom_density() + 
+  xlab("Air Temperture (°C)") +
+  ylab("Frequency")
+```
+
+Let's adjust the `fill` and `color` of this one as well.  
+
+```{r}
+df |>
+  ggplot( aes( Air_Temperature ) ) + 
+  geom_density( color="red", fill="green") + 
+  xlab("Air Temperture (°C)") +
+  ylab("Frequency")
+```
+
+
+# Relationship
+
+OK, let's look at some plots with 2-variables.  Here we can start with two continuous varibles, `Air_Temperature` and `Water_Temperature`.
+
+
+### The Scatter Plot
+
+Make a scatter plot of these two variables, with `Air_Temperature` on the X-Axis and `Water_Temperature` on the Y-Axis.  Label the axes appropriately.
+
+```{r}
+df |>
+  ggplot( aes(Air_Temperature, Water_Temperature) ) + 
+  geom_point() + 
+  xlab("Air Temperture (°C)") +
+  ylab("Water Temperture (°C)")
+```
+
+
+### Symbology
+
+You can use the plot shape and a second column of data to change the symbols.  For this, it should be a `categorical` variable and must be part of the `aes().`  Contrast this to the `fill` and `color` examples used above, which were put outside the `aes()` call and are not based upon something **inside** the data.frame.
+
+```{r}
+df |>
+  ggplot( aes(Air_Temperature, Water_Temperature, shape=Weekday) ) + 
+  geom_point() + 
+  xlab("Air Temperture (°C)") +
+  ylab("Water Temperture (°C)")
+```
+
+
+
+### Color 
+
+Just like the shape, color can be defined by some other variable in the data itself—also specified within the `aes()` function.  This time, let's use *Photosynthetically Active Radiation* (PAR) to indicate the color of the points above.  Keep the symbols as well.
+
+```{r}
+df |>
+  ggplot( aes(Air_Temperature, Water_Temperature, shape=Weekday, color=PAR) ) + 
+  geom_point() + 
+  xlab("Air Temperture (°C)") +
+  ylab("Water Temperture (°C)")
+```
+
+
+
+# Comparison
+
+For categorical data as a predictor and a continuous variable at as the response, we can use several different types of plots.  I'll start with some easy ones.  
+
+## Box Plots
+
+A boxplot is a very *data-rich* display.  I thas the median (the horizontal line), the inner 50% percentile (the box), the 95%th percentile (whiskers), and any potential outliers.  Use `Weekday` as the predictor and `Air_Temperture` as the response.
+
+
+```{r}
+df |> 
+  ggplot( aes(Weekday, Air_Temperature) ) + 
+  geom_boxplot()
+```
+
+Add `notch=TRUE` to the `geom_boxplot()`.  What does that show?
+
+```{r}
+df |> 
+  ggplot( aes(Weekday, Air_Temperature) ) + 
+  geom_boxplot( notch=TRUE )
+```
+
+Another variant of this is provided by the `geom_violin()` geometry.  This gives the the density of the continuous variable rather than just the quantiles.
+
+```{r}
+df |> 
+  ggplot( aes(Weekday, Air_Temperature) ) + 
+  geom_violin()
+```
+
+
+
+
+## Bar Plot
+
+A `geom_bar()` plot will take data and *tally* it to determine the height of the bar itself.  In our example, we can use this to depict the nubmer of records per day whose temperature was above freezing but below 10°C.
+
+1. Filter the data for `Air_Temperature` > 0 & `Air_Temperature` < 10.
+2. Use `geom_bar()` to tally `Weekday`.
+
+The `geom_bar()` height for each will the the number of elements for each `Weekday`.  Notice how the `aes()` only has one variable specified, the x-variable.
+
+```{r}
+df |> 
+  filter( Air_Temperature > 0,
+          Air_Temperature < 10 ) |>
+  ggplot( aes(Weekday) ) + 
+  geom_bar() 
+```
+
+
+## Column Plot
+
+A `geom_col()` plot is one where you can specify the the x-axis and y-axis values for the bars.  Here is an example where I find the highest temperature for each day using `group_by()` and `summarize()` to make a new data.frame.  Do this to show the output data.frame with a column for Weekday and one for the maximum air temperature.
+
+```{r}
+df |>
+  group_by( Weekday ) |>
+  summarize( Maximum = max(Air_Temperature ))
+```
+
+Create a `geom_col()` for these data.  Note, the `aes()` references the names of the columns in the data.frame that exits from the `group_by() |> summarize()` translation.
+
+```{r}
+df |>
+  group_by( Weekday ) |>
+  summarize( Maximum = max(Air_Temperature )) |>
+  ggplot( aes(Weekday, Maximum) ) + 
+  geom_col() 
+```
+
+
+## Line Chart
+
+A `geom_line()` provides a single (or duplicate) display of data.  Use `Date` and `Air_Temperature`
+
+```{r}
+df |> 
+  ggplot( aes(Date, Air_Temperature) ) + 
+  geom_line() 
+```
+
+For linear data, you can add more than one `geom_line()` object.  Create a graph that has `Air_Temperature` and `Water_Temperature` plot through time.  To make it easier, put the `aes()` inside each of the `geom_line()` calls and assign different colors for each (outside the `aes()`).
+
+```{r}
+df |> 
+  ggplot( ) + 
+  geom_line( aes(Date, Air_Temperature), color="green" )  + 
+  geom_line( aes(Date, Water_Temperature), color="blue" )
+```
+
+

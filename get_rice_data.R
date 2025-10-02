@@ -3,7 +3,8 @@
 #' 
 
 
-get_rice_data <- function() { 
+
+get_rice_data <- function( url ) { 
 
   library( tidyverse )
   library( lubridate )
@@ -36,7 +37,7 @@ get_rice_data <- function() {
     select( Date, Month, Day, Weekday, 
             Air_Temperature, Rain, Wind_Speed, Wind_Direction = WindDir, 
             Humidity=RelHumidity, Barametric_Pressure, PAR,
-            Water_Temperature, Water_Depth, everything()) -> rice_data
+            Water_Temperature, Water_Depth, everything() ) -> rice_data
   
   return( rice_data )                                                      # Return the data
 }

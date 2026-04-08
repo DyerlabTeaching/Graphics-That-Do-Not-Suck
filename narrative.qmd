@@ -372,7 +372,3 @@ Slick.
 
 [^1]: Literally, we add these toghter using the plus '+' sign just like we were going to develop an equation. 
 [^2]: The shapes are the same as the `pch` offerings covered in the lecture on graphing using Base R routines  [here](https://dyerlab.github.io/ENVS-Lectures/visualization/basic_visualization/narriative.nb.html).
-
-## Questions
-
-If you have any questions for me specifically on this topic, please post as an Issue in your repository, otherwise consider posting to the discussion board on [Canvas](https://canvas.vcu.edu).

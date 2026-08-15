@@ -21,7 +21,7 @@ This topic has the following content:
  - The narrative for both [classic plotting](https://dyerlabteaching.github.io/Graphics-That-Do-Not-Suck/narrative_classic.html) as well as for [ggplot2](https://dyerlabteaching.github.io/Graphics-That-Do-Not-Suck/narrative.html) graphics
  - [In Class](https://dyerlabteaching.github.io/Graphics-That-Do-Not-Suck/in-class.html) documents.
  - External resources:
-   - [Date to Viz](https://www.data-to-viz.com).
+   - [Data to Viz](https://www.data-to-viz.com).
    - [R Graph Gallery](https://r-graph-gallery.com/ggplot2-package.html)
    - [GGPlot2 Cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf)
    

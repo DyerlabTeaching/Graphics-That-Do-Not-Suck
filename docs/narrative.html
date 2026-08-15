@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.36">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -68,7 +68,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="narrative_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="narrative_files/libs/quarto-html/anchor.min.js"></script>
 <link href="narrative_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="narrative_files/libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="narrative_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="narrative_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="narrative_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="narrative_files/libs/bootstrap/bootstrap-138a6193a3bd40baf1e627da441a4734.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -102,7 +102,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <blockquote class="blockquote">
-<p>The <code>ggplot2</code> library is a gramattical approach to data display.</p>
+<p>The <code>ggplot2</code> library is a grammatical approach to data display.</p>
 </blockquote>
 <p>In base <code>R</code>, the graphics are generally produced by adding a lot of optional arguments to a single function such as <code>plot()</code> or <code>barplot()</code> or <code>boxplot()</code>. We can get some kinds of overlays using <code>text()</code> or <code>points()</code> or <code>lines()</code> but there is not a cohesive framework for setting this up. For even moderately complex graphical display, these approaches become unwieldy when we have to cram all that information into extra optional arguments.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <img src="narrative_files/figure-html/fig-economist-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-economist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Corruption and Human Develoment among OECD countries from <i>The Economist</i> magazine.
+Figure&nbsp;1: Corruption and Human Development among OECD countries from <i>The Economist</i> magazine.
 </figcaption>
 </figure>
 </div>
@@ -130,7 +130,7 @@ Figure&nbsp;1: Corruption and Human Develoment among OECD countries from <i>The 
 <ul>
 <li>A raw <code>data.frame</code> that has several kinds of data (CPI, HDI, region, names, etc.).<br>
 </li>
-<li>A <em>aesthetic</em> statement indicating which columns of data to use and how to use them in the plot (designating x-axis vs color, etc.).<br>
+<li>An <em>aesthetic</em> statement indicating which columns of data to use and how to use them in the plot (designating x-axis vs color, etc.).<br>
 </li>
 <li>An estimate of a trendline through the data (the red one), which displays a statistical summary of the raw data.<br>
 </li>
@@ -153,14 +153,14 @@ Figure&nbsp;1: Corruption and Human Develoment among OECD countries from <i>The 
 <figcaption>The Grammar of Graphics by Leland Wilkinson</figcaption>
 </figure>
 </div>
-<p>This philosophy has been inserted into the <code>R</code> Ecosystem by Hadley Wickham in the <code>ggplot2</code> library, which is descbribed as:</p>
+<p>This philosophy has been inserted into the <code>R</code> Ecosystem by Hadley Wickham in the <code>ggplot2</code> library, which is described as:</p>
 <blockquote class="blockquote">
 <p>A system for ‘declaratively’ creating graphics, based on “The Grammar of Graphics”. You provide the data, tell ‘ggplot2’ how to map variables to aesthetics, what graphical primitives to use, and it takes care of the details.</p>
 </blockquote>
 <p>Throughout the majority of this course, we will be using this library and this approach for all but the most trivial of graphical displays.</p>
 <section id="basic-ggplot" class="level2">
 <h2 class="anchored" data-anchor-id="basic-ggplot">Basic ggplot</h2>
-<p>As outlined above, the basis of this appraoch is an additive (and iterative) process of creating a graphic. This all starts with the data. For our purposes, we will use the same iris <code>data.frame</code> as in the previous section on base graphics.</p>
+<p>As outlined above, the basis of this approach is an additive (and iterative) process of creating a graphic. This all starts with the data. For our purposes, we will use the same iris <code>data.frame</code> as in the previous section on base graphics.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://live.staticflickr.com/65535/50163458792_2e3e877468_c_d.jpg" class="img-fluid figure-img"></p>
@@ -210,7 +210,7 @@ Figure&nbsp;1: Corruption and Human Develoment among OECD countries from <i>The 
 </div>
 </div>
 </div>
-<p>At this point, there is enough information to make an axis in the graph because the underlying data has been identified. What has not been specified to date is the way in which we want to represent the data. To do this, we add geometries to the graph. In this case, I’m going to add a histogram</p>
+<p>At this point, there is enough information to make an axis in the graph because the underlying data has been identified. What has not been specified to date is the way in which we want to represent the data. To do this, we add geometries to the graph. In this case, I’m going to add a histogram.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>( iris, <span class="fu">aes</span>(<span class="at">x=</span>Sepal.Length) ) <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
@@ -226,12 +226,12 @@ Figure&nbsp;1: Corruption and Human Develoment among OECD countries from <i>The 
 </div>
 <p>Now we have a base graph!</p>
 </section>
-<section id="aestheics-and-scope" class="level2">
-<h2 class="anchored" data-anchor-id="aestheics-and-scope">Aestheics and Scope</h2>
+<section id="aesthetics-and-scope" class="level2">
+<h2 class="anchored" data-anchor-id="aesthetics-and-scope">Aesthetics and Scope</h2>
 <p>The location of the data and the <code>aes()</code> determines the <em>scope</em> of the assignment. What I mean by this is:</p>
 <ul>
-<li>If the data and <code>aes()</code> is in the the <code>ggplot()</code> function, then everything in the whole plot <em>inherits</em> that assignment.</li>
-<li>If you put them in one or more of the components you add to <code>ggplot()</code> then the they are localized to <em>only</em> those layers.</li>
+<li>If the data and <code>aes()</code> are in the <code>ggplot()</code> function, then everything in the whole plot <em>inherits</em> that assignment.</li>
+<li>If you put them in one or more of the components you add to <code>ggplot()</code> then they are localized to <em>only</em> those layers.</li>
 </ul>
 <p>So the following statements are all identical for this most basic of plots.</p>
 <div class="cell">
@@ -242,10 +242,10 @@ Figure&nbsp;1: Corruption and Human Develoment among OECD countries from <i>The 
 <ul>
 <li>In the first case, the <code>geom_histogram()</code> inherits both data and aesthetics from <code>ggplot()</code>.<br>
 </li>
-<li>In the second one, it inherits only the data but has it’s own specification for aesthetics.</li>
+<li>In the second one, it inherits only the data but has its own specification for aesthetics.</li>
 <li>In the last one, <code>ggplot()</code> only specifies the presence of a graph and all the data and aesthetics are localized within <code>geom_histogram()</code> function.</li>
 </ul>
-<p>Where this becomes important is when we want to make more complicated graphics like the one above. The data that has the country CDI and HDI also has the names of the countries. However, only a subset of the country names are plot. This is because both the geometric layer and the text layer that has the names are using different <code>data.frame</code> objects.</p>
+<p>Where this becomes important is when we want to make more complicated graphics like the one above. The data that has the country CDI and HDI also has the names of the countries. However, only a subset of the country names are plotted. This is because both the geometric layer and the text layer that has the names are using different <code>data.frame</code> objects.</p>
 <p>Here is a more simplistic example where I overlay a density plot (as a red line) on top of the histogram.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>( iris, <span class="fu">aes</span>(<span class="at">x=</span>Sepal.Length) ) <span class="sc">+</span> <span class="fu">geom_histogram</span>() <span class="sc">+</span> <span class="fu">geom_density</span>( <span class="at">col=</span><span class="st">"red"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -261,7 +261,7 @@ Figure&nbsp;1: Corruption and Human Develoment among OECD countries from <i>The 
 </div>
 </div>
 <p>Both the <code>geom_histogram</code> and the <code>geom_density</code> use the same data and same specification for how to deal with the y-axis. However, the density is depicted as a frequency on the y-axis whereas the histogram uses counts. Also notice how the <code>col="red"</code> is localized just for the <code>geom_density()</code> layer.</p>
-<p>We can override the way in which <code>geom_histogram</code> uses the y-axis by changing the <em>aesthetics</em> for that particular geometric layer. Here, I’m goint to add another <code>aes()</code> just within the <code>geom_histogram()</code> function and have it treat y as the density rather than the count (yes that is two periods before and after the word density).</p>
+<p>We can override the way in which <code>geom_histogram</code> uses the y-axis by changing the <em>aesthetics</em> for that particular geometric layer. Here, I’m going to add another <code>aes()</code> just within the <code>geom_histogram()</code> function and have it treat y as the density rather than the count (yes that is two periods before and after the word density).</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>( iris, <span class="fu">aes</span>(<span class="at">x=</span>Sepal.Length) ) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y=</span>..density..)) <span class="sc">+</span> <span class="fu">geom_density</span>( <span class="at">col=</span><span class="st">"red"</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
@@ -341,7 +341,7 @@ Figure&nbsp;1: Corruption and Human Develoment among OECD countries from <i>The 
 </div>
 </div>
 </div>
-<p>But that is <em>a lot</em> of typing. In cases like this, where there is a an actual column of data that we want to use to change the appearance (e.g., in this case the <code>Species</code> column), we can put this within the <code>aes()</code> directly and <code>ggplot()</code> will handle the specifics for you. Anything we do to reduce the amount of typing we must do is going to help us be more accurate analysts.</p>
+<p>But that is <em>a lot</em> of typing. In cases like this, where there is an actual column of data that we want to use to change the appearance (e.g., in this case the <code>Species</code> column), we can put this within the <code>aes()</code> directly and <code>ggplot()</code> will handle the specifics for you. Anything we do to reduce the amount of typing we must do is going to help us be more accurate analysts.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>( iris, <span class="fu">aes</span>( <span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Sepal.Width, <span class="at">col=</span>Species) ) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
@@ -354,7 +354,7 @@ Figure&nbsp;1: Corruption and Human Develoment among OECD countries from <i>The 
 </div>
 <section id="in-or-out-of-aes" class="level3">
 <h3 class="anchored" data-anchor-id="in-or-out-of-aes">In or Out of <code>aes()</code></h3>
-<p>Notice in the last graph I put the name of the data column in the aesthetic but have the color (<code>col</code>) within the <code>aes()</code> function call in the graph before that, I put color outside of the <code>aes()</code> in the <code>geom_point()</code> function. What gives? Here is a simple rule.</p>
+<p><mark>Notice in the last graph I put the name of the data column in the aesthetic but have the color (<code>col</code>) within the <code>aes()</code> function call in the graph before that, I put color outside of the <code>aes()</code> in the <code>geom_point()</code> function.</mark> What gives? Here is a simple rule.</p>
 <blockquote class="blockquote">
 <p>If information from within the <code>data.frame</code> is needed to customize the display of data then it must be designated within the <code>aes()</code>, whereas if the display of the data is to be applied to the entire geometric layer, it is specified outside of the <code>aes()</code> call.</p>
 </blockquote>
@@ -376,7 +376,7 @@ Figure&nbsp;1: Corruption and Human Develoment among OECD countries from <i>The 
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Sepal Length"</span>) </span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Sepal Width"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>The overall class of the plot varible is</p>
+<p>The overall class of the plot variable is:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(p)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -451,7 +451,7 @@ Figure&nbsp;1: Corruption and Human Develoment among OECD countries from <i>The 
 </div>
 </div>
 <p>You can even define your own themes to customize all the text and lines.</p>
-<p>One thing that I like to do is to specify a default theme for all my plots. You can accomplish this using <code>theme_set()</code> and from this point forward, this theme will be used as the default (again, we need to try as hard as possible to minimzie the amount of typing we do to minimize the amount of mistakes we make).</p>
+<p>One thing that I like to do is to specify a default theme for all my plots. You can accomplish this using <code>theme_set()</code> and from this point forward, this theme will be used as the default (again, we need to try as hard as possible to minimize the amount of typing we do to minimize the amount of mistakes we make).</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>( <span class="fu">theme_bw</span>() )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -481,14 +481,14 @@ Figure&nbsp;1: Corruption and Human Develoment among OECD countries from <i>The 
 </section>
 <section id="overlays" class="level2">
 <h2 class="anchored" data-anchor-id="overlays">Overlays</h2>
-<p>Just like in the previous</p>
+<p><mark>Just like in the previous</mark></p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>( iris, <span class="fu">aes</span>(Sepal.Length, Sepal.Width) ) <span class="sc">+</span> </span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col=</span><span class="st">"red"</span>) <span class="sc">+</span> </span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Sepal Length"</span>) <span class="sc">+</span> </span>
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Sepal Width"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>The order by which you add the components to the <code>ggplot()</code> will determine the order of the layers from bottom to top—the. Layers added earlier will be covered by content in layers that are added later. Compare the following plot that takes the length and width of the sepals and overlays a linear regression line over the top.</p>
+<p><mark>The order by which you add the components to the <code>ggplot()</code> will determine the order of the layers from bottom to top—the.</mark> Layers added earlier will be covered by content in layers that are added later. Compare the following plot that takes the length and width of the sepals and overlays a linear regression line over the top.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">col=</span><span class="st">"red"</span>) <span class="sc">+</span> </span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>( <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">method=</span><span class="st">"lm"</span>, <span class="at">alpha=</span><span class="fl">1.0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -500,7 +500,7 @@ Figure&nbsp;1: Corruption and Human Develoment among OECD countries from <i>The 
 </div>
 </div>
 </div>
-<p>Compare that plot to the one below. Notice how puting <code>stat_smooth()</code> in front of the call to <code>geom_point()</code> layes the regression smoothing line and error zone <em>underneath</em> the points.</p>
+<p>Compare that plot to the one below. Notice how putting <code>stat_smooth()</code> in front of the call to <code>geom_point()</code> lays the regression smoothing line and error zone <em>underneath</em> the points.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">stat_smooth</span>(<span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">method=</span><span class="st">"lm"</span>, <span class="at">alpha=</span><span class="fl">1.0</span>) <span class="sc">+</span> </span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col=</span><span class="st">"red"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -515,7 +515,7 @@ Figure&nbsp;1: Corruption and Human Develoment among OECD countries from <i>The 
 </section>
 <section id="labeling" class="level2">
 <h2 class="anchored" data-anchor-id="labeling">Labeling</h2>
-<p>We can create two kinds of annotations, text on the raw graph and text associated with some of the points. Labels of the first kind can be added direclty by placing raw data inside the <code>aes()</code> function.</p>
+<p>We can create two kinds of annotations, text on the raw graph and text associated with some of the points. Labels of the first kind can be added directly by placing raw data inside the <code>aes()</code> function.</p>
 <p>I’ll start by taking the correlation between sepal width and length.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>cor <span class="ot">&lt;-</span> <span class="fu">cor.test</span>( iris<span class="sc">$</span>Sepal.Length, iris<span class="sc">$</span>Sepal.Width )</span>
@@ -542,7 +542,7 @@ sample estimates:
 <pre><code>[1] "r = -0.1176; P = 0.1519"</code></pre>
 </div>
 </div>
-<p>That I’ll stick onto the graph directly</p>
+<p>That I’ll stick onto the graph directly:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_text</span>( <span class="fu">aes</span>(<span class="at">x=</span><span class="fl">7.25</span>, <span class="at">y=</span><span class="fl">4.25</span>, <span class="at">label=</span>cor.text))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
@@ -573,7 +573,7 @@ sample estimates:
 3  virginica        6.588       2.974</code></pre>
 </div>
 </div>
-<p>To plot and label these mean values, I’m going to use two steps. First, since I named the columns of the new <code>data.frame</code> the same as before, we can just inherit the <code>aes()</code> but substitute in this new <code>data.frame</code> and add <code>label=Species</code> to the the <em>aesthetics</em>.</p>
+<p>To plot and label these mean values, I’m going to use two steps. First, since I named the columns of the new <code>data.frame</code> the same as before, we can just inherit the <code>aes()</code> but substitute in this new <code>data.frame</code> and add <code>label=Species</code> to the <em>aesthetics</em>.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_text</span>( <span class="at">data=</span>mean_Values, <span class="fu">aes</span>(<span class="at">label=</span>Species) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
@@ -604,8 +604,8 @@ sample estimates:
 <div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>Literally, we add these toghter using the plus ‘+’ sign just like we were going to develop an equation.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>The shapes are the same as the <code>pch</code> offerings covered in the lecture on graphing using Base R routines <a href="https://dyerlab.github.io/ENVS-Lectures/visualization/basic_visualization/narriative.nb.html">here</a>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Literally, we add these together using the plus ‘+’ sign just like we were going to develop an equation.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>The shapes are the same as the <code>pch</code> offerings covered in the lecture on graphing using Base R routines <mark><a href="https://dyerlab.github.io/ENVS-Lectures/visualization/basic_visualization/narriative.nb.html">here</a></mark>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main>
 <!-- /main column -->

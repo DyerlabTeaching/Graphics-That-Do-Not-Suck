@@ -1,4 +1,7 @@
-# Graphics
+---
+title: "Basic Graphics in R"
+format: html
+---
 
 ```{=html}
 <iframe src="https://dyerlabteaching.github.io/Graphics-That-Do-Not-Suck/slides_classic.html#/title-slide"></iframe>

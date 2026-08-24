@@ -1,8 +1,9 @@
 ---
 title: "Graph Testing"
-author: "Me" 
+author: "Me"
 abstract: this is the abstact/description for the document.
-execute:   
+format: html
+execute:
   echo: false  # this will turn it off
 ---
 

@@ -1,10 +1,7 @@
 ---
 title: "Graphics Homework"
 author: "YOUR NAME HERE"
-format: 
-  html:
-    toc: false
-    code-tools: true 
+format: html
 ---
 
 

@@ -1,6 +1,7 @@
 ---
 title: "Graphics Walkthrough for FRSC"
 author: "Your Name Here"
+format: html
 editor: source
 ---
 

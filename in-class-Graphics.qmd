@@ -1,11 +1,7 @@
 ---
 title: "In Class Activity - Plotting"
 author: "Rodney"
-format: 
-  html:
-    code-tools: true
-    toc: false
-    self-contained: true
+format: html
 execute:
   echo: true
 abstract: This is an in-class activity.  I have given prompts to create a variety of graph types using the Rice Rivers Center data.  
